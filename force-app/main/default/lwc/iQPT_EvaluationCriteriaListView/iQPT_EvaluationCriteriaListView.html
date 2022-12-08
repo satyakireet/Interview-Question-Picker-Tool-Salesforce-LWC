@@ -1,0 +1,21 @@
+<template>
+    <lightning-card>
+
+        <c-i-Q-P-T_create-evaluation-criteria onsuccess={handlesuccess}></c-i-Q-P-T_create-evaluation-criteria>
+
+        <template if:true={qecDetails.data}>
+            <div class="slds-var-p-around_small">
+                <lightning-datatable class="slds-table_bordered" key-field="Id" hide-checkbox-column="true"
+                    show-row-number-column="true" data={qecDetails.data} columns={AlltableColumns}
+                    onrowaction={handleRowAction} onsort={handleSortData} sorted-by={sortBy}
+                    sorted-direction={sortDirection}>
+                </lightning-datatable>
+            </div>
+        </template>
+<template if:false={qecDetails.data}>
+            <div class="slds-text-align_center">
+                <lightning-spinner alternative-text="Loading" size="large">Data Loading...</lightning-spinner>
+            </div>
+        </template>
+</lightning-card>
+</template>

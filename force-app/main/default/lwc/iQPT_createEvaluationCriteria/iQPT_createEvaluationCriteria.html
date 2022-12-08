@@ -1,0 +1,96 @@
+<template>
+    <div class="slds-grid slds-theme_shade slds-var-m-around_small"
+        style="border-bottom: 3px solid #16325c;background-color: #FC385C">
+        <div class="slds-col slds-var-p-around_small slds-text-align_right">
+            <lightning-button variant="brand" style="font-weight: 600;font-family: emoji;" label="Request" title="New Evaluation Criteria" onclick={openModal}>
+            </lightning-button>
+        </div>
+    </div>
+    <template if:true={isModalShown}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- modal header -->
+                <header class="slds-modal__header"
+                    style="background-color: #FC385C;color: white;border-bottom: 3px solid #16325c;padding: 1.10rem;">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                    </button>
+                    <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Question Evaluation
+                        Criteria Form</h2>
+                </header>
+                <!-- modal body -->
+                <!-- showing record edit form -->
+                <div class="slds-theme_default">
+                    <div class="slds-grid">
+                        <div class="slds-col">
+                            <div>
+                                <lightning-record-edit-form id="QEC" record-id={recordId}
+                                    object-api-name="Question_Evaluation_Criteria__c" onsuccess={handleSuccess}>
+                                    <lightning-messages>
+                                    </lightning-messages>
+                                    <lightning-layout>
+                                        <lightning-layout-item flexibility="auto" size="6" small-device-size="2"  medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="Competency__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item flexibility="auto" size="6" small-device-size="2"  medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="Multiple_Topics__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+
+                                    <lightning-layout>
+                                        <lightning-layout-item size="6" small-device-size="2" medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="No_of_Easy_Q__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="6" small-device-size="2" medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="No_of_Medium_Q__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+
+                                    <lightning-layout>
+                                        <lightning-layout-item size="6" small-device-size="2" medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="No_of_Hard_Q__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                        <lightning-layout-item size="6" small-device-size="2"  medium-device-size="4" large-device-size="6" padding="horizontal-medium">
+                                            <lightning-input-field field-name="Date__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+
+                                    <lightning-layout>
+                                        <lightning-layout-item style="margin-left: 3rem;" size="12" small-device-size="4"  medium-device-size="8" large-device-size="12" padding="horizontal-medium">
+                                            <lightning-input-field field-name="Email__c">
+                                            </lightning-input-field>
+                                        </lightning-layout-item>
+                                    </lightning-layout>
+                                </lightning-record-edit-form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- modal footer start-->
+                <footer class="slds-modal__footer" style="padding: 0.5rem;">
+                    <button type="button" class="customButton slds-media_center slds-is-relative slds-grid_align-center slds-text-align_center slds-var-p-left_medium 
+                 slds-var-p-right_medium slds-var-m-right_medium" name="Save"
+                        onclick={handleSubmit}>Run</button>
+
+                        <!-- <lightning-button variant="brand" label="Brand" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button> -->
+
+                        <!-- <lightning-button variant="brand-outline" label="Brand Outline" title="Primary action with lighter look" onclick={handleClick} class="slds-m-left_x-small"></lightning-button> -->
+
+                    <button type="button" onclick={closeModal}
+                        class="customButton slds-media_center slds-is-relative slds-grid_align-center slds-text-align_center slds-var-p-left_medium  slds-var-p-right_medium"
+                        name="Cancel">Cancel</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>
